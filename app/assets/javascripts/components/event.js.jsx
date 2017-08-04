@@ -5,8 +5,8 @@ const Event = React.createClass({
     place: React.PropTypes.string,
     description: React.PropTypes.string
   },
-  render: () => {
-    const event = this.props.event;
+  render: function() {
+    let event = this.props.event;
     return(
       <tr>
         <td>{event.name}</td>
