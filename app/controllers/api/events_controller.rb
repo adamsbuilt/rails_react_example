@@ -20,11 +20,20 @@ module Api
       render json: events
     end
 
+    def destroy
+      Event.destroy(params[:id])
+      head :no_content
+    end
+
     private
 
     def event_params
       params.require(:event).permit(:name, :description, :event_date, :place)
     end
+
+    # def set_event
+    #   @event = Event.find(params[:id])
+    # end
 
   end
 end
