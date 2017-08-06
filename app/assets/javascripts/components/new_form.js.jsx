@@ -30,7 +30,7 @@ const NewForm = React.createClass({
         }
       })
     } else {
-      alert('Please fill all fields.');
+      alert('Fill in all fields');
     }
   },
   validForm: function() {

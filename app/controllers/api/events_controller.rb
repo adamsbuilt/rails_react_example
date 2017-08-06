@@ -15,6 +15,14 @@ module Api
       end
     end
 
+    def update
+      if @event.update(event_params)
+        render json: @event
+      else
+        render nothing: true, status: :unprocessable_entity
+      end
+    end
+
     def search
       query = params[:query]
       events = Event.where('name LIKE ? OR place LIKE ? OR description LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%" )
