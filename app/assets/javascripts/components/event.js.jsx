@@ -1,5 +1,5 @@
 const Event = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {edit: false};
   },
   propTypes: {
@@ -8,7 +8,7 @@ const Event = React.createClass({
     place: React.PropTypes.string,
     description: React.PropTypes.string
   },
-  handleDelete: function(e) {
+  handleDelete(e) {
     e.preventDefault();
     $.ajax({
       method: 'DELETE',
@@ -21,14 +21,14 @@ const Event = React.createClass({
       }
     });
   },
-  handleToggle: function(e) {
+  handleToggle(e) {
     e.preventDefault();
     this.setState({edit: !this.state.edit});
   },
-  recordValue: function(field) {
+  recordValue(field) {
     return ReactDOM.findDOMNode(this.refs[field]).value;
   },
-  handleUpdate: function(e) {
+  handleUpdate(e) {
     e.preventDefault();
     if (this.validRecord()) {
       const event_data = {
@@ -41,11 +41,11 @@ const Event = React.createClass({
         method: 'PUT',
         url: '/api/events/' + this.props.event.id,
         data: { event: event_data },
-        success: function(data) {
+        success: (data) => {
           this.props.handleUpdateRecord(this.props.event, data);
           this.setState({ edit: false });
         }.bind(this),
-        error: function(xhr, status, error) {
+        error: (xhr, status, error) => {
           alert('Cannot update an event: ', error);
         }
       });
@@ -53,7 +53,7 @@ const Event = React.createClass({
       alert('Fill in all fields');
     }
   },
-  validRecord: function() {
+  validRecord() {
     if (this.recordValue("name") &&
     this.recordValue("place") &&
     this.recordValue("date") &&
@@ -63,7 +63,7 @@ const Event = React.createClass({
       return false;
     }
   },
-  renderForm: function() {
+  renderForm() {
     return(
       <tr>
         <td>
@@ -101,7 +101,7 @@ const Event = React.createClass({
       </tr>
     );
   },
-  renderRecord: function() {
+  renderRecord() {
     const event = this.props.event;
     return(
       <tr>
@@ -116,7 +116,7 @@ const Event = React.createClass({
       </tr>
     );
   },
-  render: function() {
+  render() {
     if (this.state.edit) {
       return(this.renderForm());
     } else {

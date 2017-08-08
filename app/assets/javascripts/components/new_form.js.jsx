@@ -5,7 +5,7 @@ const NewForm = React.createClass({
     place: React.PropTypes.string,
     description: React.PropTypes.string
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       name: '',
       place: '',
@@ -13,7 +13,7 @@ const NewForm = React.createClass({
       description: ''
     }
   },
-  handleAdd: function(e) {
+  handleAdd(e) {
     e.preventDefault();
     const self = this;
     if (this.validForm()) {
@@ -33,7 +33,7 @@ const NewForm = React.createClass({
       alert('Fill in all fields');
     }
   },
-  validForm: function() {
+  validForm() {
     if (this.state.name && this.state.place &&
         this.state.event_date && this.state.description) {
       return true;
@@ -41,12 +41,12 @@ const NewForm = React.createClass({
       return false;
     }
   },
-  handleChange: function(e) {
+  handleChange(e) {
     const input_name = e.target.name;
     const value = e.target.value;
     this.setState({ [input_name] : value });
   },
-  render: function() {
+  render() {
     return(
       <form className="form-inline" onSubmit={this.handleAdd}>
         <div className="form-group">

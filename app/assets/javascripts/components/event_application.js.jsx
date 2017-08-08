@@ -1,11 +1,11 @@
 const EventApplication = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {events: [], sort: "name", order: "asc"};
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.getDataFromApi();
   },
-  getDataFromApi: function() {
+  getDataFromApi() {
     const self = this;
     $.ajax({
       url: '/api/events',
@@ -17,27 +17,27 @@ const EventApplication = React.createClass({
       }
     });
   },
-  handleSearch: function(events) {
+  handleSearch(events) {
     this.setState({events: events});
   },
-  handleAdd: function(event) {
+  handleAdd(event) {
     const events = this.state.events;
     events.push(event);
     this.setState({event: events});
   },
-  handleDeleteRecord: function(event) {
+  handleDeleteRecord(event) {
     const events = this.state.events.slice();
     const index = events.indexOf(event);
     events.splice(index,1);
     this.setState({events: events});
   },
-  handleUpdateRecord: function(old, fresh) {
+  handleUpdateRecord(old, fresh) {
   const events = this.state.events.slice();
   const index = events.indexOf(old);
     events.splice(index, 1, fresh);
     this.setState({events: events});
   },
-  handleSortColumn: function(name, order) {
+  handleSortColumn(name, order) {
     if (this.state.sort != name) {
       order = 'asc';
     }
@@ -53,7 +53,7 @@ const EventApplication = React.createClass({
       }
     });
   },
-  render: function() {
+  render() {
     return(
       <div className="container">
         <div className="jumbotron">

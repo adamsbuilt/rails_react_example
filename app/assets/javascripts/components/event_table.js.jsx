@@ -1,14 +1,14 @@
 const EventTable = React.createClass({
-  handleDeleteRecord: function(event) {
+  handleDeleteRecord(event) {
     this.props.handleDeleteRecord(event);
   },
-  handleUpdateRecord: function(old, fresh) {
+  handleUpdateRecord(old, fresh) {
     this.props.handleUpdateRecord(old, fresh);
   },
-  handleSortColumn: function(name, order) {
+  handleSortColumn(name, order) {
     this.props.handleSortColumn(name, order);
   },
-  render: function() {
+  render() {
     const events = [];
     console.log(events);
     this.props.events.forEach((event) => {
