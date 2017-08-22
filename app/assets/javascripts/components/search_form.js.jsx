@@ -1,14 +1,14 @@
 const SearchForm = React.createClass({
   handleSearch() {
-    var query = ReactDOM.findDOMNode(this.refs.query).value;
-    var self = this;
+    const query = ReactDOM.findDOMNode(this.refs.query).value;
+    const self = this;
     $.ajax({
       url: '/api/events/search',
       data: { query: query },
       success(data) {
         self.props.handleSearch(data);
       },
-      error: function(xhr, status, error) {
+      error(xhr, status, error) {
         alert('Search error: ', status, xhr, error);
       }
     });
